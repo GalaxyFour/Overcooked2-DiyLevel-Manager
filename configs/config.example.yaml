@@ -1,0 +1,27 @@
+server:
+  api_port: 14556
+  public_port: 14558
+  jwt_secret: "change-me-in-production"
+  cookie_name: "oc2_manager_token"
+
+cos:
+  secret_id: ""
+  secret_key: ""
+  bucket: ""
+  region: "ap-guangzhou"
+  base_url: ""
+
+database:
+  path: "./data/manager.db"
+
+upload:
+  max_zip_mb: 512
+  temp_dir: "./data/tmp"
+
+parser:
+  python: "python3"
+  script: "./tools/inspect_info_bundle.py"
+
+bootstrap:
+  super_admin_username: "admin"
+  super_admin_password: "admin123"
