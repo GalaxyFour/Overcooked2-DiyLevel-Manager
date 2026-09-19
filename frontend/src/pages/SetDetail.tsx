@@ -19,7 +19,7 @@ export default function SetDetail() {
   }
 
   if (isLoading || !data) {
-    return <div className="text-center py-20 opacity-50">加载中…</div>
+    return <div className="text-center py-20 opacity-50">Memuat…</div>
   }
 
   const { set, versions, levels } = data
@@ -38,10 +38,10 @@ export default function SetDetail() {
           </div>
           <div className="p-8 flex flex-col justify-center">
             <h1 className="text-3xl font-extrabold mb-2">{title}</h1>
-            <p className="opacity-60 mb-4">作者：{set.authorName}</p>
-            <p className="text-sm opacity-50 mb-6">标识：{set.slug}</p>
+            <p className="opacity-60 mb-4">Penulis: {set.authorName}</p>
+            <p className="text-sm opacity-50 mb-6">Slug: {set.slug}</p>
             <button onClick={() => download()} className="btn-primary w-fit">
-              📦 下载最新安装包
+              📦 Unduh Paket Instalasi Terbaru
             </button>
           </div>
         </div>
@@ -49,7 +49,7 @@ export default function SetDetail() {
 
       {levels.length > 0 && (
         <section className="mb-10">
-          <h2 className="text-xl font-bold mb-4">关卡预览</h2>
+          <h2 className="text-xl font-bold mb-4">Pratinjau Level</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
             {levels.map((lv, i) => (
               <motion.div
@@ -76,7 +76,7 @@ export default function SetDetail() {
       )}
 
       <section>
-        <h2 className="text-xl font-bold mb-4">版本历史</h2>
+        <h2 className="text-xl font-bold mb-4">Riwayat Versi</h2>
         <div className="space-y-2">
           {versions.filter((v) => v.parseStatus === 'done').map((v) => (
             <div key={v.id} className="card p-4 flex items-center justify-between">
@@ -84,12 +84,12 @@ export default function SetDetail() {
                 <span className="font-bold">v{v.version}</span>
                 {v.isLatest && (
                   <span className="ml-2 text-xs px-2 py-0.5 rounded-full bg-mint/30 text-mint font-semibold">
-                    最新
+                    Terbaru
                   </span>
                 )}
               </div>
               <button onClick={() => download(v.version)} className="btn-ghost text-sm">
-                下载
+                Unduh
               </button>
             </div>
           ))}

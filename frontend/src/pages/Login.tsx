@@ -24,7 +24,7 @@ export default function Login() {
       }
       navigate('/dashboard')
     } catch (err) {
-      setError(err instanceof Error ? err.message : '登录失败')
+      setError(err instanceof Error ? err.message : 'Gagal masuk')
     }
   }
 
@@ -36,7 +36,7 @@ export default function Login() {
       await refresh()
       navigate('/dashboard')
     } catch (err) {
-      setError(err instanceof Error ? err.message : '改密失败')
+      setError(err instanceof Error ? err.message : 'Gagal mengubah kata sandi')
     }
   }
 
@@ -48,28 +48,28 @@ export default function Login() {
     >
       <div className="text-center mb-8">
         <div className="text-5xl mb-3">👨‍🍳</div>
-        <h1 className="text-2xl font-extrabold">{mustChange ? '设置新密码' : '作者登录'}</h1>
+        <h1 className="text-2xl font-extrabold">{mustChange ? 'Atur Kata Sandi Baru' : 'Masuk Penulis'}</h1>
       </div>
 
       {mustChange ? (
         <form onSubmit={handleChangePassword} className="space-y-4">
-          <p className="text-sm opacity-70 text-center mb-4">首次登录请设置密码（至少 6 位）</p>
+          <p className="text-sm opacity-70 text-center mb-4">Silakan atur kata sandi untuk login pertama kali (minimal 6 karakter)</p>
           <input
             type="password"
             className="input"
-            placeholder="新密码"
+            placeholder="Kata sandi baru"
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
             minLength={6}
             required
           />
-          <button type="submit" className="btn-primary w-full">确认</button>
+          <button type="submit" className="btn-primary w-full">Konfirmasi</button>
         </form>
       ) : (
         <form onSubmit={handleLogin} className="space-y-4">
           <input
             className="input"
-            placeholder="用户名"
+            placeholder="Nama pengguna"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
@@ -77,12 +77,12 @@ export default function Login() {
           <input
             type="password"
             className="input"
-            placeholder="密码"
+            placeholder="Kata sandi"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <button type="submit" className="btn-primary w-full">登录</button>
+          <button type="submit" className="btn-primary w-full">Masuk</button>
         </form>
       )}
 

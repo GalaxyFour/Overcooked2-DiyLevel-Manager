@@ -92,14 +92,14 @@ func (q *Queue) process(ctx context.Context, jobID int64) error {
 		_ = os.RemoveAll(workDir)
 	}()
 
-	q.updateProgress(ctx, version.ID, domain.ParseStatusRunning, "unzipping", 15, "解压 zip 包…")
+	q.updateProgress(ctx, version.ID, domain.ParseStatusRunning, "unzipping", 15, "Mengekstrak paket zip…")
 
 	zipPath := filepath.Join(workDir, "upload.zip")
 	if err := unzipSafe(zipPath, workDir); err != nil {
 		return q.fail(ctx, jobID, version.ID, fmt.Errorf("unzip: %w", err))
 	}
 
-	q.updateProgress(ctx, version.ID, domain.ParseStatusRunning, "validating", 30, "校验包结构…")
+	q.updateProgress(ctx, version.ID, domain.ParseStatusRunning, "validating", 30, "Memvalidasi struktur paket…")
 	meta, err := ValidateExtracted(workDir, set.Slug)
 	if err != nil {
 		return q.fail(ctx, jobID, version.ID, err)
@@ -111,7 +111,7 @@ func (q *Queue) process(ctx context.Context, jobID int64) error {
 		version.Version = meta.Version
 	}
 
-	q.updateProgress(ctx, version.ID, domain.ParseStatusRunning, "inspecting", 50, "解析 info AssetBundle…")
+	q.updateProgress(ctx, version.ID, domain.ParseStatusRunning, "inspecting", 50, "Memeriksa info AssetBundle…")
 	inspectDir := filepath.Join(workDir, "inspect")
 	manifest, err := q.inspector.Inspect(ctx, meta.InfoPath, inspectDir, set.Slug)
 	if err != nil {
@@ -124,7 +124,7 @@ func (q *Queue) process(ctx context.Context, jobID int64) error {
 		version.Version = manifest.Version
 	}
 
-	q.updateProgress(ctx, version.ID, domain.ParseStatusRunning, "uploading", 70, "上传到 COS…")
+	q.updateProgress(ctx, version.ID, domain.ParseStatusRunning, "uploading", 70, "Mengunggah ke COS…")
 
 	zipKey := storage.PackageKey(set.AuthorID, set.Slug, version.Version, fmt.Sprintf("%s_v%s_%s.zip", set.Slug, version.Version, time.Now().Format("20060102")))
 	if err := q.storage.UploadFile(ctx, zipKey, zipPath); err != nil {
@@ -169,13 +169,13 @@ func (q *Queue) process(ctx context.Context, jobID int64) error {
 		}
 	}
 
-	q.updateProgress(ctx, version.ID, domain.ParseStatusRunning, "finalizing", 90, "写入数据库…")
+	q.updateProgress(ctx, version.ID, domain.ParseStatusRunning, "finalizing", 90, "Menulis ke database…")
 
 	if err := q.entries.CreateBatch(ctx, levelEntries); err != nil {
 		return q.fail(ctx, jobID, version.ID, err)
 	}
 
-	version.ParseMessage = "解析完成"
+	version.ParseMessage = "Parsing selesai"
 	if err := q.versions.Finalize(ctx, version); err != nil {
 		return q.fail(ctx, jobID, version.ID, err)
 	}

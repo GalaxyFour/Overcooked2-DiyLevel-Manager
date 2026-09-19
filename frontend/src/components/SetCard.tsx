@@ -31,7 +31,7 @@ export default function SetCard({ set, index }: { set: LevelSet; index: number }
         <div className="p-4">
           <h3 className="font-bold text-lg truncate">{title}</h3>
           <p className="text-sm opacity-60 mt-1">
-            {set.authorName} · {set.levelCount ?? 0} 关
+            {set.authorName} · {set.levelCount ?? 0} level
           </p>
         </div>
       </Link>

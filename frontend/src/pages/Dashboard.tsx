@@ -27,13 +27,13 @@ export default function Dashboard() {
       setNameZh('')
       refetch()
     } catch (e) {
-      setError(e instanceof Error ? e.message : '创建失败')
+      setError(e instanceof Error ? e.message : 'Gagal membuat')
     }
   }
 
   const handleUpload = async (file: File) => {
     if (!uploadSlug) {
-      setError('请选择关卡集')
+      setError('Silakan pilih set level')
       return
     }
     setError('')
@@ -42,7 +42,7 @@ export default function Dashboard() {
       setJob(j)
       pollJob(j.id)
     } catch (e) {
-      setError(e instanceof Error ? e.message : '上传失败')
+      setError(e instanceof Error ? e.message : 'Gagal mengunggah')
     }
   }
 
@@ -64,29 +64,29 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-8">
-      <h1 className="text-3xl font-extrabold">作者工作台 🧑‍🍳</h1>
+      <h1 className="text-3xl font-extrabold">Dasbor Penulis 🧑‍🍳</h1>
 
       <section className="card p-6">
-        <h2 className="font-bold text-lg mb-4">创建关卡集（最多 20 个）</h2>
+        <h2 className="font-bold text-lg mb-4">Buat Set Level (Maksimal 20)</h2>
         <div className="grid sm:grid-cols-3 gap-3 mb-4">
-          <input className="input" placeholder="标识 slug (如 jia_carnival)" value={slug} onChange={(e) => setSlug(e.target.value)} />
-          <input className="input" placeholder="英文名" value={name} onChange={(e) => setName(e.target.value)} />
-          <input className="input" placeholder="中文名" value={nameZh} onChange={(e) => setNameZh(e.target.value)} />
+          <input className="input" placeholder="Slug (contoh: jia_carnival)" value={slug} onChange={(e) => setSlug(e.target.value)} />
+          <input className="input" placeholder="Nama bahasa Inggris" value={name} onChange={(e) => setName(e.target.value)} />
+          <input className="input" placeholder="Nama bahasa Mandarin" value={nameZh} onChange={(e) => setNameZh(e.target.value)} />
         </div>
-        <button onClick={createSet} className="btn-primary">创建</button>
+        <button onClick={createSet} className="btn-primary">Buat</button>
       </section>
 
       <section className="card p-6">
-        <h2 className="font-bold text-lg mb-4">上传关卡包</h2>
+        <h2 className="font-bold text-lg mb-4">Unggah Paket Level</h2>
         <p className="text-sm opacity-60 mb-4">
-          上传 Level Editor 导出的 zip（命名格式：slug_v版本_日期.zip）
+          Unggah zip hasil ekspor Level Editor (format nama: slug_vVersi_tanggal.zip)
         </p>
         <select
           className="input mb-4 max-w-md"
           value={uploadSlug}
           onChange={(e) => setUploadSlug(e.target.value)}
         >
-          <option value="">选择关卡集…</option>
+          <option value="">Pilih set level…</option>
           {sets.map((s) => (
             <option key={s.id} value={s.slug}>{s.nameZh || s.name || s.slug}</option>
           ))}
@@ -103,7 +103,7 @@ export default function Dashboard() {
           }}
         >
           <div className="text-4xl mb-2">📦</div>
-          <p>拖拽 zip 到此处，或点击选择文件</p>
+          <p>Tarik zip ke sini, atau klik untuk memilih file</p>
           <input
             ref={fileRef}
             type="file"
@@ -137,14 +137,14 @@ export default function Dashboard() {
             <p className="text-sm mt-2 opacity-70">{job.message}</p>
             {job.error && <p className="text-tomato text-sm mt-1">{job.error}</p>}
             {job.status === 'done' && (
-              <p className="text-mint font-semibold mt-2">✅ 解析完成！首页已可看到最新版本</p>
+              <p className="text-mint font-semibold mt-2">✅ Parsing selesai! Versi terbaru sudah muncul di beranda</p>
             )}
           </motion.div>
         )}
       </section>
 
       <section>
-        <h2 className="font-bold text-lg mb-4">我的关卡集</h2>
+        <h2 className="font-bold text-lg mb-4">Set Level Saya</h2>
         <div className="grid sm:grid-cols-2 gap-4">
           {sets.map((s) => (
             <div key={s.id} className="card p-4 flex justify-between items-center">

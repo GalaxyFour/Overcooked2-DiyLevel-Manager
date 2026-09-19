@@ -21,27 +21,27 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               🍳
             </motion.span>
             <span className="font-extrabold text-lg text-tomato group-hover:text-tomato/80 transition">
-              OC2 关卡管理器
+              Pengelola Level OC2
             </span>
           </Link>
 
           <nav className="flex items-center gap-1 sm:gap-2">
-            <NavLink to="/" active={loc.pathname === '/'}>首页</NavLink>
+            <NavLink to="/" active={loc.pathname === '/'}>Beranda</NavLink>
             {user && (user.role === 'author' || user.role === 'super_admin' || user.role === 'admin') && (
-              <NavLink to="/dashboard" active={loc.pathname.startsWith('/dashboard')}>工作台</NavLink>
+              <NavLink to="/dashboard" active={loc.pathname.startsWith('/dashboard')}>Dasbor</NavLink>
             )}
             {(user?.role === 'admin' || user?.role === 'super_admin') && (
-              <NavLink to="/admin" active={loc.pathname.startsWith('/admin')}>管理</NavLink>
+              <NavLink to="/admin" active={loc.pathname.startsWith('/admin')}>Admin</NavLink>
             )}
-            <button onClick={toggle} className="btn-ghost text-lg" title="切换主题">
+            <button onClick={toggle} className="btn-ghost text-lg" title="Ganti tema">
               {theme === 'light' ? '🌙' : '☀️'}
             </button>
             {user ? (
               <button onClick={logout} className="btn-ghost text-sm">
-                {user.displayName || user.username} · 退出
+                {user.displayName || user.username} · Keluar
               </button>
             ) : (
-              <Link to="/login" className="btn-primary text-sm">登录</Link>
+              <Link to="/login" className="btn-primary text-sm">Masuk</Link>
             )}
           </nav>
         </div>
@@ -50,7 +50,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <main className="max-w-6xl mx-auto px-4 py-8">{children}</main>
 
       <footer className="text-center py-8 text-sm opacity-60">
-        <p>🥘 Overcooked 2 DIY Level Manager · 胡闹厨房自定义关卡</p>
+        <p>🥘 Overcooked 2 DIY Level Manager · Level Kustom Overcooked 2</p>
       </footer>
     </div>
   )

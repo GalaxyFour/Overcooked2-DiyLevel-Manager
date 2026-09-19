@@ -20,13 +20,13 @@ export default function Home() {
         className="text-center mb-12"
       >
         <h1 className="text-4xl sm:text-5xl font-extrabold mb-4">
-          <span className="text-tomato">胡闹厨房</span> 自定义关卡
+          <span className="text-tomato">Overcooked 2</span> Level Kustom
         </h1>
         <p className="text-lg opacity-70 max-w-xl mx-auto">
-          发现社区作者创作的精彩关卡集，一键下载安装到 BepInEx/OC2DIYLevel 🎮
+          Temukan set level menarik buatan komunitas, unduh dan pasang ke BepInEx/OC2DIYLevel dengan sekali klik 🎮
         </p>
         <button onClick={() => refetch()} className="btn-ghost mt-4 text-sm">
-          🔄 刷新列表
+          🔄 Segarkan Daftar
         </button>
       </motion.section>
 
@@ -44,7 +44,7 @@ export default function Home() {
       )}
 
       {isLoading ? (
-        <div className="text-center py-20 opacity-50">加载中… 🍳</div>
+        <div className="text-center py-20 opacity-50">Memuat… 🍳</div>
       ) : sets.length === 0 ? (
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
@@ -52,7 +52,7 @@ export default function Home() {
           className="card p-12 text-center"
         >
           <div className="text-6xl mb-4">🥘</div>
-          <p className="text-lg opacity-70">还没有发布的关卡集，成为第一个作者吧！</p>
+          <p className="text-lg opacity-70">Belum ada set level yang dipublikasikan, jadilah penulis pertama!</p>
         </motion.div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

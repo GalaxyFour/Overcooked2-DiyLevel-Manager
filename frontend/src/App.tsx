@@ -9,7 +9,7 @@ import { useAuth } from './context/AuthContext'
 
 function Protected({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth()
-  if (loading) return <div className="text-center py-20">加载中…</div>
+  if (loading) return <div className="text-center py-20">Memuat…</div>
   if (!user) return <Navigate to="/login" replace />
   return <>{children}</>
 }

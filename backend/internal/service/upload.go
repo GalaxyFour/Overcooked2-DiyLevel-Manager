@@ -85,7 +85,7 @@ func (s *UploadService) Upload(ctx context.Context, authorID int64, slug string,
 		ParseStatus:   domain.ParseStatusQueued,
 		ParsePhase:    "queued",
 		ParseProgress: 0,
-		ParseMessage:  "等待解析…",
+		ParseMessage:  "Menunggu parsing…",
 	}
 	if err := s.versions.Create(ctx, version); err != nil {
 		return nil, err
